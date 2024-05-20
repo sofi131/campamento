@@ -51,7 +51,7 @@
 
         // Mostrar los datos del alumno
         echo "<p><strong>Nombre:</strong> $nombre</p>";
-        echo "<p><strong>Apellidos:</strong> $apellido</p>";
+        echo "<p><strong>Apellidos:</strong> $apellidos</p>";
         echo "<p><strong>Saldo:</strong> $saldo</p>";
 
         // Mostrar el código QR correspondiente
