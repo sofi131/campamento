@@ -55,7 +55,7 @@
         echo "<p><strong>Saldo:</strong> $saldo</p>";
 
         // Mostrar el código QR correspondiente
-        echo "<img src='qr_codes/{$nombre}_{$apellido}.png' alt='Código QR'>";
+        echo "<img src='qr_codes/{$nombre}_{$apellidos}.png' alt='Código QR'>";
     } else {
         // Si la preparación de la consulta falla, mostrar un mensaje de error
         echo "Error al preparar la consulta SQL.";
