@@ -79,7 +79,7 @@ $gestionAlumnos = new GestionAlumnos($conexion);
     </form>
 
     <h2>Actualizar Saldo de Alumno</h2>
-    <form id="formActualizarSaldo" action="">
+    <form id="formActualizarSaldo" action="procesar_alumno.php" method="POST">
         <label for="idActualizar">ID del Alumno:</label>
         <input type="number" id="idActualizar" name="idActualizar" required>
         <label for="nuevoSaldo">Nuevo Saldo:</label>
@@ -88,7 +88,7 @@ $gestionAlumnos = new GestionAlumnos($conexion);
     </form>
 
     <h2>Eliminar Alumno</h2>
-    <form id="formEliminarAlumno" action="">
+    <form id="formEliminarAlumno" action="procesar_alumno.php" method="POST">
         <label for="idEliminar">ID del Alumno:</label>
         <input type="number" id="idEliminar" name="idEliminar" required>
         <button type="submit">Eliminar Alumno</button>
