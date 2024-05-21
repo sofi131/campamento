@@ -1,4 +1,4 @@
-Ejercicio de php con código qr. Tenemos un campamento que los niños reciben monedas (o no), a partir de unas tarjetas con qr <br>
+Ejercicio de php con código qr. Tenemos un campamento que los niños reciben monedas (o no), a partir de unas tarjetas con qr. <br>
 Bienvenida <br>
 ![image](https://github.com/sofi131/campamento/assets/91051075/11fd8c31-7694-4da9-9046-026e2b0102b8)
 Gestión de alumnos <br>
