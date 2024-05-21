@@ -1,16 +1,18 @@
 <?php
-// Incluir la clase PhpSpreadsheet
-require 'PhpSpreadsheet/vendor/autoload.php';
-require 'qrlib.php'; // Incluye la biblioteca para generar códigos QR
+// Incluir la clase PhpSpreadsheet y la biblioteca QRCode
+require 'vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
 
 // Cargar el archivo Excel
-$archivoExcel = "campamento.xlsx";
+$archivoExcel = "excel/campamento.xlsx";
 $documento = IOFactory::load($archivoExcel);
 
 // Obtener la hoja activa del documento
 $hoja = $documento->getActiveSheet();
+
 // Incluir la cabecera HTML
 echo <<<HTML
 <!DOCTYPE html>
@@ -35,15 +37,21 @@ HTML;
 // Iterar sobre las filas del archivo Excel
 foreach ($hoja->getRowIterator() as $fila) {
     // Obtener los datos de cada fila
-    $nombre = $hoja->getCellByColumnAndRow(0, $fila->getRowIndex())->getValue();
-    $apellidos = $hoja->getCellByColumnAndRow(1, $fila->getRowIndex())->getValue();
+    $nombre = $hoja->getCell('B' . $fila->getRowIndex())->getValue();
+    $apellidos = $hoja->getCell('C' . $fila->getRowIndex())->getValue();
     $qr_data = "Nombre: $nombre, Apellidos: $apellidos";
 
     // Generar el nombre del archivo QR
     $qr_file = "qr_codes/{$nombre}_{$apellidos}.png";
 
+    // Configurar opciones de QR
+    $options = new QROptions([
+        'outputType' => QRCode::OUTPUT_IMAGE_PNG,
+        'eccLevel' => QRCode::ECC_L,
+    ]);
+
     // Generar el código QR
-    QRcode::png($qr_data, $qr_file);
+    (new QRCode($options))->render($qr_data, $qr_file);
 
     // Mostrar la tarjeta de campista
     echo <<<CARD
@@ -66,4 +74,3 @@ echo <<<HTML
 </html>
 HTML;
 ?>
-
