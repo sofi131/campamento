@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datos del Alumno</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -55,7 +56,10 @@
         echo "<p><strong>Saldo:</strong> $saldo</p>";
 
         // Mostrar el código QR correspondiente
-        echo "<img src='qr_codes/{$nombre}_{$apellidos}.png' alt='Código QR'>";
+        echo "<img src='qr_codes/{$nombre}_{$apellidos}.png' alt='Código QR' class='mb-3'>";
+
+        // Botón que lleva a index.php
+        echo "<a href='index.php' class='btn btn-primary'>Modificar datos</a>";
     } else {
         // Si la preparación de la consulta falla, mostrar un mensaje de error
         echo "Error al preparar la consulta SQL.";
