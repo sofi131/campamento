@@ -61,62 +61,84 @@ $gestionAlumnos = new GestionAlumnos($conexion);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interfaz de Usuario - Gestión de Alumnos</title>
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
-    <h1>Gestión de Alumnos</h1>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="text-center">Gestión de Alumnos</h1>
 
-    <h2>Crear Nuevo Alumno</h2>
-    <form id="formCrearAlumno" action="procesar_alumno.php" method="POST">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
-        <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" name="apellido" required>
-        <label for="saldo">Saldo:</label>
-        <input type="number" id="saldo" name="saldo" required>
-        <button type="submit">Crear Alumno</button>
-    </form>
+                <h2>Crear Nuevo Alumno</h2>
+                <form id="formCrearAlumno" action="procesar_alumno.php" method="POST">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="saldo">Saldo:</label>
+                        <input type="number" id="saldo" name="saldo" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Crear Alumno</button>
+                </form>
 
-    <h2>Actualizar Saldo de Alumno</h2>
-    <form id="formActualizarSaldo" action="procesar_alumno.php" method="POST">
-        <label for="idActualizar">ID del Alumno:</label>
-        <input type="number" id="idActualizar" name="idActualizar" required>
-        <label for="nuevoSaldo">Nuevo Saldo:</label>
-        <input type="number" id="nuevoSaldo" name="nuevoSaldo" required>
-        <button type="submit">Actualizar Saldo</button>
-    </form>
+                <h2 class="mt-5">Actualizar Saldo de Alumno</h2>
+                <form id="formActualizarSaldo" action="procesar_alumno.php" method="POST">
+                    <div class="form-group">
+                        <label for="idActualizar">ID del Alumno:</label>
+                        <input type="number" id="idActualizar" name="idActualizar" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nuevoSaldo">Nuevo Saldo:</label>
+                        <input type="number" id="nuevoSaldo" name="nuevoSaldo" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Actualizar Saldo</button>
+                </form>
 
-    <h2>Eliminar Alumno</h2>
-    <form id="formEliminarAlumno" action="procesar_alumno.php" method="POST">
-        <label for="idEliminar">ID del Alumno:</label>
-        <input type="number" id="idEliminar" name="idEliminar" required>
-        <button type="submit">Eliminar Alumno</button>
-    </form>
+                <h2 class="mt-5">Eliminar Alumno</h2>
+                <form id="formEliminarAlumno" action="procesar_alumno.php" method="POST">
+                    <div class="form-group">
+                        <label for="idEliminar">ID del Alumno:</label>
+                        <input type="number" id="idEliminar" name="idEliminar" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Eliminar Alumno</button>
+                </form>
 
-    <h2>Lista de Alumnos</h2>
-    <div id="listaAlumnos">
-        <?php
-        $alumnos = $gestionAlumnos->obtenerTodosLosAlumnos();
-        if (!empty($alumnos)) {
-            echo "<table>";
-            echo "<tr><th>ID</th><th>Nombre</th><th>Apellido</th><th>Saldo</th></tr>";
-            foreach ($alumnos as $alumno) {
-                echo "<tr>";
-                echo "<td>" . $alumno["id"] . "</td>";
-                echo "<td>" . $alumno["nombre"] . "</td>";
-                echo "<td>" . $alumno["apellido"] . "</td>";
-                echo "<td>" . $alumno["saldo"] . "</td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "No se encontraron alumnos.";
-        }
-        ?>
+                <h2 class="mt-5">Lista de Alumnos</h2>
+                <div id="listaAlumnos">
+                    <?php
+                    $alumnos = $gestionAlumnos->obtenerTodosLosAlumnos();
+                    if (!empty($alumnos)) {
+                        echo "<table class='table table-striped'>";
+                        echo "<thead><tr><th>ID</th><th>Nombre</th><th>Apellido</th><th>Saldo</th></tr></thead>";
+                        echo "<tbody>";
+                        foreach ($alumnos as $alumno) {
+                            echo "<tr>";
+                            echo "<td>" . $alumno["id"] . "</td>";
+                            echo "<td>" . $alumno["nombre"] . "</td>";
+                            echo "<td>" . $alumno["apellido"] . "</td>";
+                            echo "<td>" . $alumno["saldo"] . "</td>";
+                            echo "</tr>";
+                        }
+                        echo "</tbody>";
+                        echo "</table>";
+                    } else {
+                        echo "<p>No se encontraron alumnos.</p>";
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
